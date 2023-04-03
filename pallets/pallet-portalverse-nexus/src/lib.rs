@@ -294,7 +294,6 @@ pub mod pallet {
 		#[pallet::weight(10_000)]
 		pub fn exchangepov2uc(
 			origin: OriginFor<T>,
-			ucid: CurrencyIdOf<T>,
 			pov: AmountOf<T>,
 		) -> DispatchResultWithPostInfo {
 			let player = ensure_signed(origin)?;
