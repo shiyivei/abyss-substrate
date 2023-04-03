@@ -244,15 +244,13 @@ pub mod pallet {
 			let amount: u64 = duration * price;
 			let dest = renderer.clone();
 
-			let x: Result<BalanceOf<T>, _> = amount.try_into();
+			let x: Result<Balance,_> = amount.try_into();
 			match x {
 				Ok(v) => {
-					T::NativeCurrency::transfer(
-						&player,
-						&dest,
-						v,
-						ExistenceRequirement::KeepAlive,
-					)?;
+					if let Ok(transfer_amount) = v.try_into() {
+						T::Currency::transfer(UC, &player, &dest, transfer_amount)?;
+					};
+				  
 				},
 				Err(_) => {
 					// TODO
@@ -301,7 +299,7 @@ pub mod pallet {
 		) -> DispatchResultWithPostInfo {
 			let player = ensure_signed(origin)?;
 
-			ensure!(ucid != POV, Error::<T>::InvalidCurrencyId);
+			//ensure!(ucid != POV, Error::<T>::InvalidCurrencyId);
 
 			let res: Result<u128, _> = pov.try_into();
 			let rate = Pov2uc::<T>::get().unwrap_or(0);
@@ -314,7 +312,7 @@ pub mod pallet {
 						Ok(slash_amount) => {
 							T::NativeCurrency::slash(&player, slash_amount);
 							log::info!("amount slashed: {:?}", slash_amount);
-							T::Currency::update_balance(ucid, &player, pov)?;
+							T::Currency::update_balance(UC, &player, pov)?;
 						},
 						Err(_) => {},
 					}
