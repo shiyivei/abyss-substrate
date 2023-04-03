@@ -59,7 +59,7 @@ pub use sp_runtime::BuildStorage;
 pub use sp_runtime::{Perbill, Permill};
 
 /// Import the template pallet.
-pub use pallet_template;
+pub use pallet_portalverse_nexus;
 
 /// An index to a block.
 pub type BlockNumber = u32;
@@ -108,8 +108,8 @@ pub mod opaque {
 // https://docs.substrate.io/main-docs/build/upgrade#runtime-versioning
 #[sp_version::runtime_version]
 pub const VERSION: RuntimeVersion = RuntimeVersion {
-	spec_name: create_runtime_str!("node-template"),
-	impl_name: create_runtime_str!("node-template"),
+	spec_name: create_runtime_str!("portalverse"),
+	impl_name: create_runtime_str!("portalverse"),
 	authoring_version: 1,
 	// The version of the runtime specification. A full node will not attempt to use its native
 	//   runtime in substitute for the on-chain Wasm runtime unless all of `spec_name`,
@@ -424,7 +424,7 @@ impl pallet_dex::Config for Runtime {
 }
 
 /// Configure the pallet-template in pallets/template.
-impl pallet_template::Config for Runtime {
+impl pallet_portalverse_nexus::Config for Runtime {
 	type RuntimeEvent = RuntimeEvent;
 	type Currency = Currencies;
 	type NativeCurrency = Balances;
@@ -450,8 +450,8 @@ construct_runtime!(
 		// Assets: pallet_assets,
 		TransactionPayment: pallet_transaction_payment,
 		Sudo: pallet_sudo,
-		// Include the custom logic from the pallet-template in the runtime.
-		TemplateModule: pallet_template,
+		// Include the custom logic from the pallet-portalverse-nexus in the runtime.
+		nexus: pallet_portalverse_nexus,//pallet_template,
 		Currencies: orml_currencies,
 		Tokens: orml_tokens,
 		Dex: pallet_dex,
@@ -502,7 +502,7 @@ mod benches {
 		[frame_system, SystemBench::<Runtime>]
 		[pallet_balances, Balances]
 		[pallet_timestamp, Timestamp]
-		[pallet_template, TemplateModule]
+		[pallet_portalverse_nexus, nexus]
 	);
 }
 

@@ -55,12 +55,10 @@ orml-traits = { default-features = false, path = "../open-runtime-module-library
 
 # Local Dependencies
 pallet-dex = {package = "pallet-dex",version = "2.14.0", default-features = false, path = "../pallets/dex"}
-pallet-template = { package = "pallet-template",version = "4.0.0-dev", default-features = false, path = "../pallets/template" }
+pallet-portalverse-nexus = { package = "pallet-portalverse-nexus",version = "4.0.0-dev", default-features = false, path = "../pallets/pallet-portalverse-nexus" }
 primitives = { package = "acala-primitives", path = "../primitives", default-features = false }
 support = { package = "module-support", path = "../pallets/support", default-features = false }
 
-# portalverse
-pallet-portalverse-nexus = { default-features = false, path = "../pallets/pallet-portalverse-nexus" }
 
 
 [build-dependencies]
@@ -84,7 +82,7 @@ std = [
 	"pallet-grandpa/std",
 	"pallet-randomness-collective-flip/std",
 	"pallet-sudo/std",
-	"pallet-template/std",
+	"pallet-portalverse-nexus/std",
 	"pallet-timestamp/std",
 	"pallet-transaction-payment-rpc-runtime-api/std",
 	"pallet-transaction-payment/std",
@@ -113,7 +111,7 @@ runtime-benchmarks = [
 	"frame-system/runtime-benchmarks",
 	"pallet-balances/runtime-benchmarks",
 	"pallet-grandpa/runtime-benchmarks",
-	"pallet-template/runtime-benchmarks",
+	"pallet-portalverse-nexus/runtime-benchmarks",
 	"pallet-timestamp/runtime-benchmarks",
 	"sp-runtime/runtime-benchmarks",
 ]
@@ -127,7 +125,7 @@ try-runtime = [
 	"pallet-grandpa/try-runtime",
 	"pallet-randomness-collective-flip/try-runtime",
 	"pallet-sudo/try-runtime",
-	"pallet-template/try-runtime",
+	"pallet-portalverse-nexus/try-runtime",
 	"pallet-timestamp/try-runtime",
 	"pallet-transaction-payment/try-runtime",
 ]

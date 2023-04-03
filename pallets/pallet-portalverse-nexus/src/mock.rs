@@ -1,4 +1,4 @@
-use crate as pallet_template;
+use crate as pallet_portalverse_nexus;
 use frame_support::traits::{ConstU16, ConstU64};
 use frame_system as system;
 use orml_traits::MultiCurrency;
@@ -19,7 +19,7 @@ frame_support::construct_runtime!(
 		UncheckedExtrinsic = UncheckedExtrinsic,
 	{
 		System: frame_system,
-		TemplateModule: pallet_template,
+		TemplateModule: pallet_portalverse_nexus,
 	}
 );
 
@@ -50,7 +50,7 @@ impl system::Config for Test {
 	type MaxConsumers = frame_support::traits::ConstU32<16>;
 }
 
-impl pallet_template::Config for Test {
+impl pallet_portalverse_nexus::Config for Test {
 	type RuntimeEvent = RuntimeEvent;
 	// type MultiCurrency = MultiCurrency<Self::AccountId>;
 }
